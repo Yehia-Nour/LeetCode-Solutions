@@ -19,14 +19,13 @@ public:
         for (int i = 0; i < b + 1; ++i) 
             curr = curr->next;
 
-        ListNode *curr2 = list2;
-        while (curr2->next)
+        prev->next = list2;
+        while (prev->next)
         {
-            curr2 = curr2->next;
+            prev = prev->next;
         }
 
-        prev->next = list2;
-        curr2->next = curr;
+        prev->next = curr;
         return list1;
     }
 };
