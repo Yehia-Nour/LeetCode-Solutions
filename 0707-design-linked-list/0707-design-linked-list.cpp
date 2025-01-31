@@ -85,6 +85,16 @@ public:
         delete curr;
         --length;
     }
+    	~LinkedList() 
+	{
+        Node *current;
+        while (head) 
+        {
+                current = head;
+                head = head->next;
+                delete current;
+        }
+	}
 
 };
 
