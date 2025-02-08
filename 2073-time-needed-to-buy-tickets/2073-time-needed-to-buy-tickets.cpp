@@ -4,20 +4,24 @@ public:
         queue<int> queue;
         int time = 0;
 
-        for(int i = 0; i < tickets.size(); i++) {
+        for(int i = 0; i < tickets.size(); i++) 
+        {
             queue.push(i);
         }
 
-        while(!queue.empty()) {
+        while(!queue.empty()) 
+        {
             int index = queue.front();
             queue.pop();
             tickets[index]--;
             time++;
 
-            if(tickets[index] == 0 && index == k) {
+            if(tickets[index] == 0 && index == k) 
+            {
                 return time;
             }
-            if(tickets[index] > 0) {
+            if(tickets[index] > 0) 
+            {
                 queue.push(index);
             }
         }
