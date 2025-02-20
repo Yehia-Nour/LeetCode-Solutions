@@ -12,7 +12,7 @@
 class Solution {
 public:
     vector<vector<int>> zigzagLevelOrder(TreeNode* root) {
-        if (!root) return {}; // إذا كانت الشجرة فارغة، نرجع مصفوفة فارغة
+        if (!root) return {};
         
         deque<TreeNode*> nodes_deque;
         nodes_deque.push_front(root);
