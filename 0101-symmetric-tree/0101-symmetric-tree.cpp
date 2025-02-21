@@ -15,7 +15,7 @@ public:
         if (!leftNode && !rightNode) return true;
         if (!leftNode || !rightNode) return false;
 
-        if (leftNode->val != rightNode->val) return false;
+        // if (leftNode->val != rightNode->val) return false;
 
         return isSymmetric(leftNode->left, rightNode->right)
          && isSymmetric(leftNode->right, rightNode->left);
