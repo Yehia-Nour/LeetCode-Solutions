@@ -19,8 +19,7 @@ public:
     	if (start > end)
     		return nullptr;
 
-    	// The best root for N sorted numbers is their middle number
-    	// as N/2 numbers before and after. Keep applying recursively
+
     	int mid = (start + end) / 2;
     	TreeNode *root = new TreeNode(values[mid]);
     	root->left = sortedArrayToBST(values, start, mid - 1);
