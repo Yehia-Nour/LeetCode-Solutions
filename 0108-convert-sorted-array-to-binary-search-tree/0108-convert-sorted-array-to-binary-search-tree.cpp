@@ -11,14 +11,9 @@
  */
 class Solution {
 public:
-    TreeNode* sortedArrayToBST(vector<int>& nums) {
-    	return sortedArrayToBST(nums, 0, (int) nums.size() - 1);
-    }
-
     TreeNode* sortedArrayToBST(vector<int>& values, int start, int end) {
     	if (start > end)
     		return nullptr;
-
 
     	int mid = (start + end) / 2;
     	TreeNode *root = new TreeNode(values[mid]);
@@ -26,5 +21,9 @@ public:
     	root->right = sortedArrayToBST(values, mid + 1, end);
 
     	return root;
+    }
+
+    TreeNode* sortedArrayToBST(vector<int>& nums) {
+    	return sortedArrayToBST(nums, 0, (int) nums.size() - 1);
     }
 };
