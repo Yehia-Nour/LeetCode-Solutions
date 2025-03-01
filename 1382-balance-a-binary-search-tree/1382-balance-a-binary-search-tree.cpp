@@ -19,7 +19,7 @@ public:
         inOrderTraversal(root->right, vec);
     }
 
-    TreeNode* sortedArrayToBST(vector<int> vec, int start, int end) {
+    TreeNode* sortedArrayToBST(vector<int> &vec, int start, int end) {
         if (start > end) return nullptr;
 
         int mid = (start + end) / 2;
