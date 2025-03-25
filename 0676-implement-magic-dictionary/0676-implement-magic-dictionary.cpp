@@ -1,51 +1,31 @@
-
-
 class MagicDictionary {
 private:
-	static const int MAX_CHAR = 26;
-	MagicDictionary* child[MAX_CHAR];
-	bool isLeaf { };
+    unordered_set<string> wordSet;
+    unordered_map<int, vector<string>> lengthMap;
 
 public:
-    MagicDictionary() {
-        memset(child, 0, sizeof(child));
-    }
+    MagicDictionary() {}
 
-    void insert(string str, int index = 0) {
-        if (index == str.length()) isLeaf = 1;
-        else {
-            int cur = str[index] - 'a';
-            if (!child[cur]) child[cur] = new MagicDictionary();
-            child[cur]->insert(str, index + 1);
-        }
-    }
-
-    bool word_exist(string str, int idx = 0) {
-		if (idx == (int) str.size())
-			return isLeaf;
-
-		int cur = str[idx] - 'a';
-		if (!child[cur])
-			return false;
-
-		return child[cur]->word_exist(str, idx + 1);
-	}
-    
     void buildDict(vector<string> dictionary) {
-        for (int i = 0; i < dictionary.size(); ++i) {
-            insert(dictionary[i]);
+        for (const string& word : dictionary) {
+            wordSet.insert(word);
+            lengthMap[word.length()].push_back(word);
         }
     }
 
     bool search(string searchWord) {
-        for (int i = 0; i < searchWord.length(); ++i)    {
-            char cpy = searchWord[i];
-            for (char ch = 'a'; ch <= 'z'; ch++) {
-                if (ch == cpy) continue;
-                searchWord[i] = ch;
-                if (word_exist(searchWord)) return true;
+        int len = searchWord.length();
+
+         if (lengthMap.find(len) == lengthMap.end()) return false;
+
+        for (const string& dictWord : lengthMap[len]) {
+            int diffCount = 0;
+            for (int i = 0; i < len; ++i) {
+                if (searchWord[i] != dictWord[i]) {
+                    if (++diffCount > 1) break; 
+                }
             }
-            searchWord[i] = cpy;
+            if (diffCount == 1) return true;
         }
         return false;
     }
