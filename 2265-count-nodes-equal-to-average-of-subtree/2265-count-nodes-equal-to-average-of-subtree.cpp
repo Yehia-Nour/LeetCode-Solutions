@@ -10,13 +10,6 @@
  * };
  */
 class Solution {
-public:
-    int averageOfSubtree(TreeNode* root) {
-        int res = 0;
-        helper(root, res);
-        return res;
-    }
-
 private:
     pair<int, int> helper(TreeNode* root, int& res) {
         if (!root) return {0, 0};
@@ -26,5 +19,12 @@ private:
         int elements = l.second + r.second + 1;
         if (sum / elements == root->val) res++;
         return {sum, elements};
+    }
+
+public:
+    int averageOfSubtree(TreeNode* root) {
+        int res = 0;
+        helper(root, res);
+        return res;
     }
 };
