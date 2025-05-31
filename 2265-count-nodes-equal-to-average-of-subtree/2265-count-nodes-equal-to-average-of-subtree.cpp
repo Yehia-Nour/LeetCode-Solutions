@@ -11,22 +11,20 @@
  */
 class Solution {
 public:
-    int res = 0;
-    pair<int, int> helper(TreeNode* root) {
-        if (!root) return {0, 0};
-
-        auto l = helper(root->left);
-        auto r = helper(root->right);
-
-        int sum = l.first + r.first + root->val;
-        int elments = l.second + r.second + 1;
-
-        if (sum / elments == root->val) res++;
-
-        return {sum, elments};
-    }
     int averageOfSubtree(TreeNode* root) {
-        helper(root);
+        int res = 0;
+        helper(root, res);
         return res;
+    }
+
+private:
+    pair<int, int> helper(TreeNode* root, int& res) {
+        if (!root) return {0, 0};
+        auto l = helper(root->left, res);
+        auto r = helper(root->right, res);
+        int sum = l.first + r.first + root->val;
+        int elements = l.second + r.second + 1;
+        if (sum / elements == root->val) res++;
+        return {sum, elements};
     }
 };
