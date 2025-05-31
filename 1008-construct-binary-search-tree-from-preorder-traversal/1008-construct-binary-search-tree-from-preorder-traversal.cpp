@@ -11,21 +11,19 @@
  */
 class Solution {
 public:
-    void insert(TreeNode *root, int value) {
-        if (root->val > value) {
-            if (root->left) insert(root->left, value);
-            else root->left = new TreeNode(value);
-        } else {
-            if (root->right) insert(root->right, value);
-            else root->right = new TreeNode(value);
-        }
-    }
     TreeNode* bstFromPreorder(vector<int>& preorder) {
-        TreeNode *root = new TreeNode(preorder[0]);
+        int index = 0;
+        return build(preorder, index, INT_MAX);
+    }
 
-        for (int i = 1; i < preorder.size(); i++) {
-            insert(root, preorder[i]);
-        }
+private:
+    TreeNode* build(vector<int>& preorder, int& index, int bound) {
+        if (index == preorder.size() || preorder[index] > bound)
+            return nullptr;
+
+        TreeNode* root = new TreeNode(preorder[index++]);
+        root->left = build(preorder, index, root->val);
+        root->right = build(preorder, index, bound);
 
         return root;
     }
