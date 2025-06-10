@@ -3,7 +3,7 @@ public:
     bool is_sum(vector<int>& nums, int divisor, int threshold) {
         int sum = 0;
         for (int num : nums) {
-            sum += ceil(static_cast<double>(num) / divisor);
+            sum += (num + divisor - 1) / divisor;
             if (sum > threshold) 
                 return false;
         }
@@ -11,12 +11,9 @@ public:
     }
 
     int smallestDivisor(vector<int>& nums, int threshold) {
-        int max_num = 0;
-        for (int num : nums) {
-            if (num > max_num) max_num = num;
-        }
 
-        int start = 1, end = max_num, ans = 0; 
+        int start = 1, end = *max_element(nums.begin(), nums.end());
+        int ans; 
         while (start <= end) {
             int mid = start + (end - start) / 2;
 
