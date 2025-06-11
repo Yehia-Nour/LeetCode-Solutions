@@ -9,7 +9,7 @@ public:
             if (abs(arr[mid] - target) < abs(closest - target)) {
                 closest = arr[mid];
             } else if (abs(arr[mid] - target) == abs(closest - target)) {
-                closest = std::min(closest, arr[mid]);
+                closest = min(closest, arr[mid]);
             }
 
             if (arr[mid] < target) {
