@@ -1,26 +1,21 @@
 class Solution {
+private:
+	unordered_map<int, Employee*> id_to_emp;
 public:
-    int dfs(unordered_map<int, Employee*>& graph, int id, unordered_set<int>& visited) {
-        if (visited.count(id)) return 0;
-        visited.insert(id);
+	int dfs(int id) {
+		Employee *emp = id_to_emp[id];
 
-        Employee* employee = graph[id];
-        int total = employee->importance;
+		int result = emp->importance;
+		for (auto &subEmp : emp->subordinates)
+			result += dfs(subEmp);
 
-        for (int subId : employee->subordinates) {
-            total += dfs(graph, subId, visited);
-        }
+		return result;
+	}
 
-        return total;
-    }
+	int getImportance(vector<Employee*> employees, int id) {
+		for (auto &emp : employees)
+			id_to_emp[emp->id] = emp;
 
-    int getImportance(vector<Employee*> employees, int id) {
-        unordered_map<int, Employee*> graph;
-        for (auto e : employees) {
-            graph[e->id] = e;
-        }
-
-        unordered_set<int> visited;
-        return dfs(graph, id, visited);
-    }
+		return dfs(id);
+	}
 };
