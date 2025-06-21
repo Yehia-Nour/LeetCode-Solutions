@@ -22,15 +22,14 @@ public:
     int maxAreaOfIsland(vector<vector<int>>& grid) {
 		vector<vector<bool>> visited(grid.size(), vector<bool>(grid[0].size()));
 
-        int res = 0, temp = 0;
+        int maxArea = 0;
 
         for (int r = 0; r < grid.size(); r++) {
             for (int c = 0; c < grid[0].size(); c++) {
-                temp = dfs(r, c, grid, visited);
-                if (res < temp) res = temp;
+                maxArea = max(maxArea, dfs(r, c, grid, visited));
             }
         }
 
-        return res;
+        return maxArea;
     }
 };
