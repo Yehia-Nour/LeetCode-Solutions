@@ -1,7 +1,6 @@
 vector<int> inputCoins;
 const int MAX_N = 300;
 const int MAX_AMOUNT = 5000 + 1;
-const int INF = 1e9;
 
 int memory[MAX_N][MAX_AMOUNT];
 int dp(int i, int remain) {
