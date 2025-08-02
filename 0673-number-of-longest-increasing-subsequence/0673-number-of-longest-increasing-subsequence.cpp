@@ -2,8 +2,8 @@ class Solution {
 public:
     int findNumberOfLIS(vector<int>& nums) {
         int n = nums.size();
-        vector<int> dp(n, 1);       // طول LIS اللي بينتهي عند i
-        vector<int> count(n, 1);    // عدد الطرق اللي توصل بيها لطول LIS[i]
+        vector<int> dp(n, 1);   
+        vector<int> count(n, 1);
 
         int maxLen = 1;
 
