@@ -16,7 +16,7 @@ public class Solution
 
             used[i] = true;
 
-            _res++;   // أي تسلسل جديد نضيفه للنتيجة
+            _res++;
 
             Backtrack(count + 1, used);
 
