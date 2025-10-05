@@ -68,6 +68,6 @@ Contributions and improvements to existing solutions are highly welcome. To cont
 If you have any questions, suggestions, or just want to connect, feel free to reach out:
 
 - Email: yehia.noureldin.28@gmail.com
-- LinkedIn: [Yehia NourEldin](www.linkedin.com/in/yehia-nour)
+- LinkedIn: [Yehia NourEldin](https://linkedin.com/in/yehia-nour)
 
 Happy coding! 🚀
