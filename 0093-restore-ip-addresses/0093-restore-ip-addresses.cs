@@ -1,12 +1,5 @@
 public class Solution
 {
-    public IList<string> RestoreIpAddresses(string s)
-    {
-        var result = new List<string>();
-        Backtrack(s, 0, new List<string>(), result);
-        return result;
-    }
-
     void Backtrack(string s, int start, List<string> parts, List<string> result)
     {
         if (parts.Count == 4 && start == s.Length)
@@ -28,5 +21,12 @@ public class Solution
             Backtrack(s, start + len, parts, result);
             parts.RemoveAt(parts.Count - 1);
         }
+    }
+
+    public IList<string> RestoreIpAddresses(string s)
+    {
+        var result = new List<string>();
+        Backtrack(s, 0, new List<string>(), result);
+        return result;
     }
 }
