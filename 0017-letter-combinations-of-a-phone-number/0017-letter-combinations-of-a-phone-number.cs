@@ -1,19 +1,20 @@
 public class Solution
 {
     Dictionary<char, string> _phoneMap = new Dictionary<char, string>
-        {
-            {'2', "abc"},
-            {'3', "def"},
-            {'4', "ghi"},
-            {'5', "jkl"},
-            {'6', "mno"},
-            {'7', "pqrs"},
-            {'8', "tuv"},
-            {'9', "wxyz"}
-        };
+    {
+        {'2', "abc"},
+        {'3', "def"},
+        {'4', "ghi"},
+        {'5', "jkl"},
+        {'6', "mno"},
+        {'7', "pqrs"},
+        {'8', "tuv"},
+        {'9', "wxyz"}
+    };
+
     List<string> _res = new List<string>();
 
-    void Backtrack(string digits, int start, string str)
+    void Backtrack(string digits, int index, string str)
     {
         if (str.Length == digits.Length)
         {
@@ -21,15 +22,11 @@ public class Solution
             return;
         }
 
-        for( int i = start; i < digits.Length; i++ )
-        {
-            for( int j = 0; j < _phoneMap[digits[i]].Length; j++ )
-            {
-                str += _phoneMap[digits[i]][j];
-                Backtrack(digits, i + 1, str);
-                str = str.Substring(0, str.Length - 1);
+        string letters = _phoneMap[digits[index]];
 
-            }
+        foreach (char letter in letters)
+        {
+            Backtrack(digits, index + 1, str + letter);
         }
     }
 
@@ -38,8 +35,7 @@ public class Solution
         if (digits.Length == 0)
             return _res;
 
-        string str = "";
-        Backtrack(digits, 0, str);
+        Backtrack(digits, 0, "");
         return _res;
     }
 }
