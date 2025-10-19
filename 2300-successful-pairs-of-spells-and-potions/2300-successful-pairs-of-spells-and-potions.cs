@@ -12,7 +12,7 @@ public class Solution
         {
             long spell = spells[i];
             int left = 0, right = m - 1;
-            int firstSuccessIndex = m; // افترض مفيش ولا potion ناجح
+            int firstSuccessIndex = m; 
 
             while (left <= right)
             {
