@@ -1,7 +1,6 @@
 public class Solution {
     public void WiggleSort(int[] nums) {
         int n = nums.Length;
-        int mid = FindKLargest(nums, (n + 1) / 2);
 
         int[] copy = (int[])nums.Clone();
         Array.Sort(copy);
@@ -16,11 +15,5 @@ public class Solution {
             else
                 nums[i] = copy[right--]; 
         }
-    }
-
-    int FindKLargest(int[] nums, int k)
-    {
-        Array.Sort(nums);
-        return nums[nums.Length - k];
     }
 }
