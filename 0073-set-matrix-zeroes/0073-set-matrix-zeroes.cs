@@ -1,49 +1,44 @@
 public class Solution
 {
-    int[][] _matrix;
-    int _rows;
-    int _cols;
-
-    void RowDFS(int i)
-    {
-        for(int col = 0; col < _cols; col++)
-            _matrix[i][col] = 0;
-    }
-
-    void ColDFS(int j)
-    {
-        for(int row = 0; row < _rows; row++)
-            _matrix[row][j] = 0;
-    }
-
     public void SetZeroes(int[][] matrix)
     {
-        _matrix = matrix;
-        _rows = matrix.Length;
-        _cols = matrix[0].Length;
-        List<(int row, int col)> zeros = [];
+        int rows = matrix.Length;
+        int cols = matrix[0].Length;
 
-        for (int i = 0; i < _rows; i++)
+        bool firstRowZero = false;
+        bool firstColZero = false;
+
+        for (int j = 0; j < cols; j++)
+            if (matrix[0][j] == 0) { firstRowZero = true; break; }
+
+        for (int i = 0; i < rows; i++)
+            if (matrix[i][0] == 0) { firstColZero = true; break; }
+
+        for (int i = 1; i < rows; i++)
         {
-            for (int j = 0; j < _cols; j++)
-                if (matrix[i][j] == 0) zeros.Add((i, j));
-        }
-
-        HashSet<int> rowVisited = [];
-        HashSet<int> colVisited = [];
-
-        for(int i = 0; i < zeros.Count; ++i)
-        {
-            if (!rowVisited.Contains(zeros[i].row))
+            for (int j = 1; j < cols; j++)
             {
-                rowVisited.Add(zeros[i].row);
-                RowDFS(zeros[i].row);
-            }
-            if (!colVisited.Contains(zeros[i].col))
-            {
-                colVisited.Add(zeros[i].col);
-                ColDFS(zeros[i].col);
+                if (matrix[i][j] == 0)
+                {
+                    matrix[i][0] = 0;
+                    matrix[0][j] = 0;
+                }
             }
         }
+
+        for (int i = 1; i < rows; i++)
+        {
+            for (int j = 1; j < cols; j++)
+            {
+                if (matrix[i][0] == 0 || matrix[0][j] == 0)
+                    matrix[i][j] = 0;
+            }
+        }
+
+        if (firstRowZero)
+            for (int j = 0; j < cols; j++) matrix[0][j] = 0;
+
+        if (firstColZero)
+            for (int i = 0; i < rows; i++) matrix[i][0] = 0;
     }
 }
