@@ -40,7 +40,7 @@ public class Solution
             {
                 TreeNode curr = queue.Dequeue();
 
-                if (level == maxLevel && i == 0)
+                if (level == maxLevel)
                     return curr.val;
 
                 if (curr.left != null)
