@@ -2,28 +2,22 @@ public class Solution
 {
     public long MinCost(string s, int[] cost)
     {
-        Dictionary<char, long> pairs = new();
+        long total = 0;
+        long best = 0;
+
+        Dictionary<char, long> sum = new();
 
         for (int i = 0; i < s.Length; i++)
         {
+            total += cost[i];
+
             char c = s[i];
-            if (!pairs.ContainsKey(c))
-                pairs[c] = cost[i];
-            else
-                pairs[c] += cost[i];
+            if (!sum.ContainsKey(c)) sum[c] = 0;
+            sum[c] += cost[i];
+
+            if (sum[c] > best) best = sum[c];
         }
 
-        var maxHeap = new PriorityQueue<long, long>();
-
-        foreach (var item in pairs)
-            maxHeap.Enqueue(item.Value, -item.Value);
-
-        maxHeap.Dequeue();
-
-        long res = 0;
-        while (maxHeap.Count > 0)
-            res += maxHeap.Dequeue();
-
-        return res;
+        return total - best;
     }
 }
